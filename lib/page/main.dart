@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../layout/layout.dart' as layout;
 import '../router.dart';
 import '../widgets/home_banners.dart';
+import '../widgets/cate_list.dart';
+import '../test_db/cate.dart';
 
 class Main extends Page {
   build(Map params, router) {
@@ -14,10 +16,15 @@ class Main extends Page {
      return Scaffold(
 //        appBar: layout.appBar(),
         body: SafeArea(
-          child: Flex(
-            direction: Axis.vertical,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Banners(toShopCart, toSearch, toUser),
+              Container(
+                child: Text("分类", textScaleFactor: 1.4),
+                margin: EdgeInsets.all(10),
+              ),
+              CategoryList(categorys),
               Text("to other"),
               FlatButton(child: Text("to other!"),onPressed: (){
                 router.to(ctx, '/other', {"hello":"world"});
