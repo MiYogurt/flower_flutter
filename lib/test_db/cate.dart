@@ -1,9 +1,4 @@
-
-class Category {
-  String name;
-  String imgUrl;
-  Category(this.name, this.imgUrl);
-}
+import '../model/category.dart';
 
 List<Category> categorys = [
   Category("爱情鲜花", "https://img01.hua.com/uploadpic/newpic/9012038.jpg_220x240.jpg"),

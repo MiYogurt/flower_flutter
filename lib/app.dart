@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'router.dart';
-import 'page/main.dart';
+import 'page/home.dart';
 import 'page/user.dart';
 import 'page/other.dart';
 
@@ -9,7 +9,15 @@ class DemoApp extends StatelessWidget {
     PageRoute widget;
     route.pages.forEach((path, page) {
       if (path == settings.name) {
-        widget = page.build(settings.arguments, route);
+        var args = settings.arguments;
+        if(args == null){
+          args = ({
+            "name": settings.name
+          }) as Object;
+        } else {
+          (args as Map)["path"] = settings.name;
+        }
+        widget = page.build(args, route);
       }
     });
     return widget;
@@ -17,7 +25,7 @@ class DemoApp extends StatelessWidget {
   static NoRoute route = NoRoute();
 
   DemoApp(){
-    route.add('/', Main());
+    route.add('/', Home());
     route.add('/user', User());
     route.add('/other', Other());
   }

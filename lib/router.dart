@@ -12,6 +12,6 @@ class NoRoute{
   }
 
   to(BuildContext ctx, String path, Map params){
-    Navigator.of(ctx).pushNamed(path, arguments: params);
+    Navigator.of(ctx).popAndPushNamed(path, arguments: params);
   }
 }
