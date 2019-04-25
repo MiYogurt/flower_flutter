@@ -55,11 +55,17 @@ flutter:
     - assets/svg/wode.svg
     - assets/svg/gouwuche.svg
     - assets/svg/search.svg
+    - assets/svg/home.svg
+    - assets/svg/contact.svg
+    - assets/svg/gift.svg
 
   fonts:
     - family: Hero  #指定一个字体名
       fonts:
         - asset: fonts/iconfont.ttf
+    - family: Nav  #指定一个字体名
+      fonts:
+        - asset: fonts/nav.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
 

@@ -27,7 +27,7 @@ class DemoApp extends StatelessWidget {
   DemoApp(){
     route.add('/', Home());
     route.add('/user', User());
-    route.add('/other', Other());
+    route.add('/category', Other());
   }
 
   @override
