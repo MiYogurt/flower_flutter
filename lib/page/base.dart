@@ -17,7 +17,7 @@ class BodyPage extends Page {
       case Path.Home:
         _selectedIndex = 0;
         break;
-      case Path.Category:
+      case Path.Subject:
         _selectedIndex = 1;
         break;
       case Path.User:
@@ -45,7 +45,7 @@ class BodyPage extends Page {
             router.to(ctx, Path.Home, {});
             break;
           case 1:
-            router.to(ctx, Path.Category, {});
+            router.to(ctx, Path.Subject, {});
             break;
           case 2:
             router.to(ctx, Path.User, {});
@@ -58,7 +58,6 @@ class BodyPage extends Page {
     if(noAnimate)
     {
       return PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 0),
         pageBuilder: (ctx, _, __){
           return Scaffold(
               body: _build(ctx, params, router),

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'router.dart';
 import 'page/home.dart';
 import 'page/user.dart';
-import 'page/other.dart';
+import 'page/subject.dart';
+import 'path.dart' as Path;
 
 class DemoApp extends StatelessWidget {
   static RouteFactory router = (RouteSettings settings) {
@@ -25,9 +26,9 @@ class DemoApp extends StatelessWidget {
   static NoRoute route = NoRoute();
 
   DemoApp(){
-    route.add('/', Home());
-    route.add('/user', User());
-    route.add('/category', Other());
+    route.add(Path.Home, Home());
+    route.add(Path.User, User());
+    route.add(Path.Subject, Subject());
   }
 
   @override

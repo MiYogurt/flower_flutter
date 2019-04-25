@@ -18,12 +18,21 @@ var Home = () => BodyPage.formBuild((ctx, params, router){
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Banners(toShopCart, toSearch, toUser),
-          Container(
-            child: Text("分类", textScaleFactor: 1.4),
-            margin: EdgeInsets.all(10),
-          ),
-          CategoryList(categorys),
-          GoodList(goods)
+//          Expanded(
+//            flex: 1,
+//            child: SingleChildScrollView(
+//              child: Column(
+//                children: <Widget>[
+//                  Container(
+//                    child: Text("分类", textScaleFactor: 1.4),
+//                    margin: EdgeInsets.all(10),
+//                  ),
+//                  CategoryList(categorys),
+//                  GoodList(goods)
+//                ],
+//              ),
+//            )
+//          )
         ],
       ));
 });

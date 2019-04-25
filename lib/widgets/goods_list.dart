@@ -38,7 +38,7 @@ class GoodList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: SingleChildScrollView(
+      child: Padding(
         padding: EdgeInsets.all(10),
         child: Wrap(
           spacing: 10,

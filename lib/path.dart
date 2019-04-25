@@ -1,3 +1,3 @@
 const Home = "/";
-const Category = "/category";
+const Subject = "/subject";
 const User = "/user";
