@@ -23,7 +23,6 @@ class GoodBox extends StatelessWidget {
   }
 }
 
-
 class GoodList extends StatelessWidget {
   List<Goods> goods;
   GoodList(this.goods);
@@ -37,7 +36,7 @@ class GoodList extends StatelessWidget {
   }
   @override
   Widget build(BuildContext context) {
-    return Expanded(
+    return Container(
       child: Padding(
         padding: EdgeInsets.all(10),
         child: Wrap(

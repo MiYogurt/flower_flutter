@@ -31,6 +31,7 @@ class BodyPage extends Page {
     const IconData contact = IconData(0xe64a, fontFamily: 'Nav');
 
     return BottomNavigationBar(
+      elevation: 0,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(icon: Icon(home), title: Text('首页')),
         BottomNavigationBarItem(icon: Icon(gift), title: Text('专题')),
