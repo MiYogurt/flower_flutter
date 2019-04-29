@@ -55,6 +55,8 @@ flutter:
     - assets/svg/wode.svg
     - assets/svg/gouwuche.svg
     - assets/svg/search.svg
+    - assets/svg/right.svg
+    - assets/svg/left.svg
 
   fonts:
     - family: Hero  #指定一个字体名

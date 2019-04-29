@@ -10,6 +10,7 @@ class BodyPage extends Page {
   BodyPage();
   BuildFn _build;
   bool noAnimate = true;
+  String title;
   bottomNavigationBar(ctx, path, NoRoute router){
     var _selectedIndex = -1;
     print(path);
@@ -63,22 +64,26 @@ class BodyPage extends Page {
           return Scaffold(
               body: _build(ctx, params, router),
               bottomNavigationBar: bottomNavigationBar(ctx, params["path"] ?? "/", router),
-              drawer: layout.drawer(ctx)
+//              drawer: layout.drawer(ctx)
           );
         }
       );
    }
    return MaterialPageRoute(builder: (ctx){
+     var appBar = this.title != null ?
+        AppBar(title: Text(this.title), backgroundColor: Colors.deepOrange, centerTitle: false, elevation: 0,)
+         : null;
       return Scaffold(
+        appBar: appBar,
         body: _build(ctx, params, router),
         bottomNavigationBar: bottomNavigationBar(ctx, params["path"] ?? "/", router),
-        drawer: layout.drawer(ctx)
+//        drawer: layout.drawer(ctx)
       );
     },
     );
   }
 
-  BodyPage.formBuild(BuildFn build) {
+  BodyPage.formBuild(BuildFn build, {this.noAnimate = true, this.title}) {
     _build = build;
   }
 }
