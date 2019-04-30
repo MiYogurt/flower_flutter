@@ -6,7 +6,7 @@ import 'base.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 
-var User = () => BodyPage.formBuild((ctx, params, router){
+var User = () => BodyPage.formBuild((ctx, params, NoRoute router){
 
   var UserAvatar = CardBox(
     height: 120,
@@ -61,7 +61,7 @@ var User = () => BodyPage.formBuild((ctx, params, router){
             SizedBox(height: 10),
             SelectItem("购物车", "/shopcart"),
             SelectItem("优惠券", "/coupon"),
-            SelectItem("修改密码", "/shopcart"),
+            SelectItem("修改密码", "/change_pass"),
             Divider(),
             SelectItem("退出", "/exit"),
           ],

@@ -1,3 +1,4 @@
+import 'package:flower_shop/page/change_pass.dart';
 import 'package:flower_shop/page/coupon.dart';
 import 'package:flutter/material.dart';
 import 'router.dart';
@@ -31,6 +32,7 @@ class DemoApp extends StatelessWidget {
     route.add(Path.User, User());
     route.add(Path.Subject, Subject());
     route.add(Path.Coupon, Coupon());
+    route.add(Path.ChangePass, ChangePass());
   }
 
   @override

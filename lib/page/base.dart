@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import '../layout/layout.dart' as layout;
 import '../router.dart';
 import '../path.dart' as Path;
 
@@ -13,7 +11,6 @@ class BodyPage extends Page {
   String title;
   bottomNavigationBar(ctx, path, NoRoute router){
     var _selectedIndex = -1;
-    print(path);
     switch(path){
       case Path.Home:
         _selectedIndex = 0;
@@ -86,4 +83,6 @@ class BodyPage extends Page {
   BodyPage.formBuild(BuildFn build, {this.noAnimate = true, this.title}) {
     _build = build;
   }
+
+
 }

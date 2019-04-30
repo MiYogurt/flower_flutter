@@ -1,8 +1,6 @@
-import 'dart:io';
-
+import 'package:flower_shop/widgets/back_nav.dart';
 import 'package:flower_shop/widgets/card.dart';
 import 'package:flower_shop/widgets/title.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import '../router.dart';
 import 'base.dart';
@@ -43,26 +41,7 @@ var Coupon = () =>
             ),
           ));
 
-      var IOSNavBar = Offstage(
-          offstage: !Platform.isIOS,
-          child: GestureDetector(
-            onTap: () {
-              var nav = Navigator.of(ctx);
-              if (nav.canPop()) {
-                nav.pop();
-              }
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              width: MediaQuery.of(ctx).size.width - 20,
-              color: Color.fromRGBO(244, 244, 244, 1),
-              child: Row(
-                children: <Widget>[
-                  SvgPicture.asset("assets/svg/left.svg", width: 20)
-                ],
-              ),
-            ),
-          ));
+
 
       return SafeArea(
           child: Container(
@@ -73,7 +52,7 @@ var Coupon = () =>
             Expanded(
                 child: ListView(
               children: <Widget>[
-                IOSNavBar,
+                IOSNavBar(ctx),
                 ATitle("购物券"),
                 _Coupons("五一购物券", 99, "2019-11-1", "满 500 可用"),
                 _Coupons("圣诞礼券", 109, "2019-11-1", "无限制")
