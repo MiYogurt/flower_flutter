@@ -13,7 +13,7 @@ class Banners extends StatelessWidget {
 
   Widget searchBar(){
     return Expanded(
-          child:GestureDetector(
+          child: GestureDetector(
             onTap: toSearch,
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),

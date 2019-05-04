@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import '../model/goods.dart';
+import '../router.dart';
+import '../path.dart' as Path;
 
 class GoodBox extends StatelessWidget {
   String name;
   String imgUrl;
-  GoodBox(this.name, this.imgUrl);
+  VoidCallback routerCallback;
+  GoodBox(this.name, this.imgUrl, {this.routerCallback});
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      width: screenWidth / 2 - 20,
-      child: Column(
-        children: <Widget>[
-          Image.network(this.imgUrl),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-            child: Text(this.name),
-          )
-        ],
+    return GestureDetector(
+      onTap: routerCallback,
+      child: Container(
+        width: screenWidth / 2 - 20,
+        child: Column(
+          children: <Widget>[
+            Image.network(this.imgUrl),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10),
+              child: Text(this.name),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -27,11 +33,13 @@ class GoodList extends StatelessWidget {
   List<Goods> goods;
   GoodList(this.goods);
 
-  List<Widget> list()
+  List<Widget> list(BuildContext ctx)
   {
     return List.generate(goods.length, (i){
       var item = goods[i];
-      return GoodBox(item.name, item.imgUrl);
+      return GoodBox(item.name, item.imgUrl, routerCallback: (){
+        route.to(ctx, Path.Detail, {"name": item.name});
+      });
     });
   }
   @override
@@ -42,7 +50,7 @@ class GoodList extends StatelessWidget {
         child: Wrap(
           spacing: 10,
           runSpacing: 10.0,
-          children: list(),
+          children: list(context),
         ),
       ),
     );

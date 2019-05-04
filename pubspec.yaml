@@ -26,6 +26,14 @@ dependencies:
   english_words: ^3.1.5
   intl: ^0.15.7 
   flutter_svg: ^0.12.4
+  flutter_swiper : ^1.1.6
+  webview_flutter: ^0.3.6
+  flutter_html: ^0.9.6
+  photo_view: ^0.3.1
+  flutter_webview_plugin: ^0.3.4
+  fluttertoast: ^3.0.4
+  flutter_inappbrowser:
+    path: ../flutter_inappbrowser
 dev_dependencies:
   flutter_test:
     sdk: flutter

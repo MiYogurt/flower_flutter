@@ -15,3 +15,5 @@ class NoRoute{
     Navigator.of(ctx).pushNamed(path, arguments: params);
   }
 }
+
+NoRoute route = NoRoute();

@@ -23,7 +23,7 @@ class CategoryList extends StatelessWidget {
   List<Category> categorys;
   CategoryClick handler;
 
-  CategoryList(this.categorys, {this.handler});
+   CategoryList(this.categorys, {this.handler});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,9 @@ class CategoryList extends StatelessWidget {
             itemBuilder: (ctx, index) {
               var cate = categorys[index];
               return GestureDetector(
-                  onTap: () => this.handler ?? this.handler(index),
+                  onTap: (){
+                    if (this.handler != null) this.handler(index);
+                  },
                   child: CardBox(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

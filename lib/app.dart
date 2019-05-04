@@ -1,5 +1,10 @@
+import 'package:flower_shop/page/category.dart';
 import 'package:flower_shop/page/change_pass.dart';
 import 'package:flower_shop/page/coupon.dart';
+import 'package:flower_shop/page/detail.dart';
+import 'package:flower_shop/page/photo.dart';
+import 'package:flower_shop/page/search.dart';
+import 'package:flower_shop/page/subject_detail.dart';
 import 'package:flutter/material.dart';
 import 'router.dart';
 import 'page/home.dart';
@@ -25,7 +30,6 @@ class DemoApp extends StatelessWidget {
     });
     return widget;
   };
-  static NoRoute route = NoRoute();
 
   DemoApp(){
     route.add(Path.Home, Home());
@@ -33,6 +37,11 @@ class DemoApp extends StatelessWidget {
     route.add(Path.Subject, Subject());
     route.add(Path.Coupon, Coupon());
     route.add(Path.ChangePass, ChangePass());
+    route.add(Path.Detail, Detail());
+    route.add(Path.Photo, Photo());
+    route.add(Path.Category, Category());
+    route.add(Path.Search, Search());
+    route.add(Path.SubjectDetail, SubjectDetail());
   }
 
   @override

@@ -5,7 +5,6 @@ import '../router.dart';
 import 'base.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 var User = () => BodyPage.formBuild((ctx, params, NoRoute router){
 
   var UserAvatar = CardBox(
