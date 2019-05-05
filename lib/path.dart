@@ -8,3 +8,4 @@ const Photo = "/photo";
 const Category = "/category";
 const Search = "/search";
 const SubjectDetail = "/subject_detail";
+const ShopCart = "/shop_cart";

@@ -58,7 +58,7 @@ var User = () => BodyPage.formBuild((ctx, params, NoRoute router){
             ATitle("个人中心"),
             UserAvatar,
             SizedBox(height: 10),
-            SelectItem("购物车", "/shopcart"),
+            SelectItem("购物车", "/shop_cart"),
             SelectItem("优惠券", "/coupon"),
             SelectItem("修改密码", "/change_pass"),
             Divider(),

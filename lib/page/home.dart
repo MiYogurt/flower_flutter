@@ -8,7 +8,7 @@ import 'base.dart';
 import '../path.dart' as Path;
 
 var Home = () => BodyPage.formBuild((ctx, params, router) {
-      VoidCallback toShopCart = () => router.to(ctx, "/shop_cart", {});
+      VoidCallback toShopCart = () => router.to(ctx, Path.ShopCart, {});
       VoidCallback toSearch = () => router.to(ctx, Path.Search, {});
       VoidCallback toUser = () => router.to(ctx, Path.User, {});
 
