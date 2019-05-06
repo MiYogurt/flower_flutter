@@ -1,28 +1,4 @@
-class Goods {
-  String imgUrl;
-  String name;
-  String type;
-  num price;
-  int count;
-  bool checked;
-
-  Goods(
-      {this.imgUrl,
-      this.name,
-      this.type,
-      this.price,
-      this.count,
-      this.checked = false});
-
-  Goods copy() => Goods(
-      imgUrl: this.imgUrl,
-      name: this.name,
-      type: this.type,
-      price: this.price,
-      count: this.count,
-      checked: this.checked);
-}
-
+import '../model/goods.dart';
 // 添加商品
 class AddAction {
   Goods goods;

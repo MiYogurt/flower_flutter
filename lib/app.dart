@@ -7,15 +7,14 @@ import 'package:flower_shop/page/search.dart';
 import 'package:flower_shop/page/shop_cart.dart';
 import 'package:flower_shop/page/subject_detail.dart';
 import 'package:flutter/material.dart';
-import 'router.dart';
-import 'page/home.dart';
-import 'page/user.dart';
-import 'page/subject.dart';
-import 'path.dart' as Path;
+import 'package:flower_shop/router.dart';
+import 'package:flower_shop/page/home.dart';
+import 'package:flower_shop/page/user.dart';
+import 'package:flower_shop/page/subject.dart';
+import 'package:flower_shop/path.dart' as Path;
 
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:redux/redux.dart';
-import 'lib/store.dart';
+import 'package:flower_shop/lib/store.dart';
 
 class DemoApp extends StatelessWidget {
   static RouteFactory router = (RouteSettings settings) {
@@ -27,7 +26,7 @@ class DemoApp extends StatelessWidget {
           args = ({
             "name": settings.name,
             "init": settings.isInitialRoute
-          }) as Object;
+          });
         } else {
           (args as Map)["path"] = settings.name;
           (args as Map)["init"] = false;

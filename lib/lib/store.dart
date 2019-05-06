@@ -1,6 +1,13 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:redux_persist/redux_persist.dart';
+import 'package:redux_persist_flutter/redux_persist_flutter.dart';
 import 'package:redux/redux.dart';
 import 'actions.dart';
+import 'package:flower_shop/model/goods.dart';
 
+part 'store.g.dart';
+
+@JsonSerializable()
 class AppState {
   final List<Goods> shopCart;
   AppState({
@@ -10,6 +17,12 @@ class AppState {
   List<Goods> copydShopCart(){
     return this.shopCart.map((v) => v.copy()).toList();
   }
+
+  factory AppState.fromJson(Map<String, dynamic> json) => _$AppStateFromJson(json);
+
+  static AppState fromLoad(dynamic json) => _$AppStateFromJson(json);
+
+  Map<String, dynamic> toJson() => _$AppStateToJson(this);
 }
 
 var initShopCart = [
@@ -20,14 +33,20 @@ var initShopCart = [
 
 var state = AppState();
 
-var addGoodsReducer = (AppState state, AddAction action){
+final persistor = Persistor<AppState>(
+  storage: FlutterStorage(), // Or use other engines
+  serializer: JsonSerializer<AppState>(AppState.fromLoad),
+);
+
+
+AppState addGoodsReducer (AppState state, AddAction action){
   var shopCart = state.copydShopCart();
   shopCart.add(action.goods);
   var newState = AppState(
     shopCart: shopCart,
   );
   return newState;
-};
+}
 
 Reducer<AppState> otherGoodsReducer = (AppState state, action) {
   var shopCart = state.copydShopCart();
@@ -58,9 +77,14 @@ Reducer<AppState> appReducer = combineReducers([
   otherGoodsReducer
 ]);
 
+var store = Store(appReducer, initialState: AppState() ,middleware: [asyncActionMiddleware, persistor.createMiddleware()]);
 
-var store = Store(appReducer, initialState: AppState() ,middleware: [asyncActionMiddleware]);
-
+void initState() async {
+  AppState initState = await persistor.load();
+  if(initState != null){
+    store.dispatch(InitState(initState.shopCart));
+  }
+}
 
 typedef AsyncAction = Future<Null> Function(Store<AppState> store);
 typedef AsyncActionHandler = AsyncAction Function();
@@ -71,6 +95,7 @@ AsyncActionHandler fetchData = ({url = "xxxx"}) => (store) async {
   // init Data
   store.dispatch(InitState(initShopCart));
 };
+
 Middleware<AppState> asyncActionMiddleware = (
     Store<AppState> store,
     dynamic action,

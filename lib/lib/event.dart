@@ -1,5 +1,5 @@
 import 'dart:async';
-import './shopcart.dart';
+import 'package:flower_shop/lib/shopcart.dart';
 
 class Event {
   StreamController streamController;

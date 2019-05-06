@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../router.dart';
 import '../path.dart' as Path;
 
@@ -91,6 +92,14 @@ class BodyPage extends Page {
         _lastPressedAt = DateTime.now();
         return false; // 退出;
       }
+      Fluttertoast.showToast(
+          msg: "再次返回退出应用",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIos: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
       return true;
     },
     child: child,);
