@@ -3,6 +3,7 @@ import 'package:flower_shop/page/base.dart';
 import 'package:flower_shop/widgets/card.dart';
 import 'package:flower_shop/widgets/list.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import '../test_db/subject.dart' as db;
 import '../model/subject.dart';
 import '../layout/layout.dart' as layout;
@@ -33,7 +34,12 @@ class __SubjectState extends State<_Subject> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.network(subject.imgUrl),
+                FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: subject.imgUrl,
+                  fit: BoxFit.cover,
+                  height: 130,
+                ),
                 Container(
                   padding: EdgeInsets.all(5),
                   child: Text(subject.name),

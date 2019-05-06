@@ -132,20 +132,26 @@ class _OverLayerState extends State<OverLayer> {
 
   Widget counter(){
     return Container(
-      margin: EdgeInsets.only(bottom: 10),
-      child: Counter(
-        up: (){
-          setState(() {
-            count +=1;
-          });
-        },
-        down: (){
-          if(count == 0) return;
-          setState(() {
-            count -=1;
-          });
-        },
-        count: count,
+      margin: EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("购买数量", style: TextStyle(fontSize: 14),),
+          Counter(
+            up: (){
+              setState(() {
+                count +=1;
+              });
+            },
+            down: (){
+              if(count == 0) return;
+              setState(() {
+                count -=1;
+              });
+            },
+            count: count,
+          )
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'dart:math' as math;
 import '../model/category.dart';
 import 'card.dart';
@@ -46,7 +47,7 @@ class CategoryList extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.network(cate.imgUrl, width: 100, height: 100),
+                        FadeInImage.memoryNetwork(placeholder: kTransparentImage, image: cate.imgUrl, height: 100, width: 100,),
                         Container(
                           height: 40,
                           padding: EdgeInsets.only(top: 10),

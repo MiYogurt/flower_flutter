@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:transparent_image/transparent_image.dart';
 import '../model/goods.dart';
 import '../router.dart';
 import '../path.dart' as Path;
-
 class GoodBox extends StatelessWidget {
   String name;
   String imgUrl;
@@ -17,7 +17,7 @@ class GoodBox extends StatelessWidget {
         width: screenWidth / 2 - 20,
         child: Column(
           children: <Widget>[
-            Image.network(this.imgUrl),
+            FadeInImage.memoryNetwork(placeholder: kTransparentImage, image: this.imgUrl, height: 150,),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10),
               child: Text(this.name),
