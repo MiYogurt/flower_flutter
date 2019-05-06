@@ -3,6 +3,7 @@ import 'package:flower_shop/widgets/overlayer.dart';
 import 'package:flower_shop/widgets/tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -13,7 +14,6 @@ import 'base.dart';
 import '../path.dart' as Path;
 
 typedef Updater = void Function(void Function());
-
 
 class AppPaginationBuilder extends SwiperPlugin {
   Widget build(BuildContext context, SwiperPluginConfig config) {
@@ -86,13 +86,16 @@ var Detail = () => BodyPage.formBuild((ctx, Map params, router) {
               data: Theme.of(ctx).copyWith(primaryColor: Colors.deepOrange),
               child: Swiper(
                 itemBuilder: (BuildContext context, int index) {
-                  return Image.network(
-                    photo[index],
-                    fit: BoxFit.cover,
+                  return Hero(
+                    tag:  photo[index],
+                    child: FadeInImage.memoryNetwork(
+                        placeholder: kTransparentImage,
+                        image: photo[index],
+                        fit: BoxFit.cover),
                   );
                 },
-                onTap: (i){
-                  router.to(ctx, Path.Photo, { "url": photo[i] });
+                onTap: (i) {
+                  router.to(ctx, Path.Photo, {"url": photo[i]});
                 },
                 loop: false,
                 itemCount: photo.length,
@@ -182,26 +185,27 @@ var Detail = () => BodyPage.formBuild((ctx, Map params, router) {
         ],
       );
 
-      var bottomButton = (String text, Color color, VoidCallback onTap) => GestureDetector(
-        onTap: onTap,
-        child: Container(
-          height: 50,
-          padding: EdgeInsets.symmetric(horizontal: 20),
-          alignment: Alignment.center,
-          child: Text(
-            text,
-            style: TextStyle(color: Colors.white),
-          ),
-          color: color,
-        ),
-      );
+      var bottomButton =
+          (String text, Color color, VoidCallback onTap) => GestureDetector(
+                onTap: onTap,
+                child: Container(
+                  height: 50,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  alignment: Alignment.center,
+                  child: Text(
+                    text,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  color: color,
+                ),
+              );
 
       Updater updater = null;
 
-      event.on<AddGoodsCount>().listen((_){
-        if(updater == null) return;
+      event.on<AddGoodsCount>().listen((_) {
+        if (updater == null) return;
 
-        updater((){
+        updater(() {
           shopCart.count += 1;
         });
       });
@@ -221,12 +225,15 @@ var Detail = () => BodyPage.formBuild((ctx, Map params, router) {
                     children: <Widget>[
                       Container(
                         padding: EdgeInsets.only(left: 10, right: 3),
-                        child: SvgPicture.asset("assets/svg/gouwuche.svg", width: 20),
+                        child: SvgPicture.asset("assets/svg/gouwuche.svg",
+                            width: 20),
                       ),
                       StatefulBuilder(
-                        builder: (ctx, _updater){
+                        builder: (ctx, _updater) {
                           updater = _updater;
-                          return Text(shopCart.count.toString(), style: TextStyle(color: Color.fromRGBO(51, 51, 51, 0.7)));
+                          return Text(shopCart.count.toString(),
+                              style: TextStyle(
+                                  color: Color.fromRGBO(51, 51, 51, 0.7)));
                         },
                       ),
                     ],
@@ -241,19 +248,20 @@ var Detail = () => BodyPage.formBuild((ctx, Map params, router) {
                       timeInSecForIos: 1,
                       backgroundColor: Colors.red,
                       textColor: Colors.white,
-                      fontSize: 16.0
-                  );
+                      fontSize: 16.0);
                 }),
-                bottomButton("购买", Colors.red, (){
+                bottomButton("购买", Colors.red, () {
 //                  showModalBottomSheet(context: ctx, builder: (ctx){
 //                    return ConstrainedBox(
 //                        constraints: BoxConstraints(minHeight: MediaQuery.of(ctx).size.height / 2 + 200),
 //                        child: Text("123"),
 //                    );
 //                  });
-                  showDialog(context: ctx, builder: (context){
-                    return OverLayer();
-                  });
+                  showDialog(
+                      context: ctx,
+                      builder: (context) {
+                        return OverLayer();
+                      });
                 }),
               ],
             ),
@@ -272,25 +280,24 @@ var Detail = () => BodyPage.formBuild((ctx, Map params, router) {
                         initialUrl: "https://baidu.com",
                         javascriptMode: JavascriptMode.unrestricted),
                   ),
-                Expanded(
-                  child: Container(
+                  Expanded(
+                      child: Container(
                     margin: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blueAccent)
+                        border: Border.all(color: Colors.blueAccent)),
+                    child: InAppWebView(
+                      initialUrl: "https://baidu.com",
                     ),
-                    child: InAppWebView(initialUrl: "https://baidu.com",),
-                  )
-                ),
+                  )),
                 ],
-              )
-          ),
+              )),
           Container(
-            child: FutureBuilder(
-              future: Future.value("<h1>hello world!!</h1>\n<p> i am p tag </p><img src='https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/flutter-mark-square-100.png'/>"),
-                builder: (BuildContext context, snapshot){
-                return Html(data: snapshot.data);
-              })
-          )
+              child: FutureBuilder(
+                  future: Future.value(
+                      "<h1>hello world!!</h1>\n<p> i am p tag </p><img src='https://cdn.jsdelivr.net/gh/flutterchina/website@1.0/images/flutter-mark-square-100.png'/>"),
+                  builder: (BuildContext context, snapshot) {
+                    return Html(data: snapshot.data);
+                  }))
         ],
       );
 
@@ -301,7 +308,7 @@ var Detail = () => BodyPage.formBuild((ctx, Map params, router) {
               child: ListView(
                 padding: EdgeInsets.only(bottom: 70),
                 children: <Widget>[swiper, Infomation, Divider, ImageInfo],
-          )),
+              )),
           bottomNav
         ],
       );

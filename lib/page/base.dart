@@ -9,6 +9,8 @@ class BodyPage extends Page {
   BuildFn _build;
   bool noAnimate = true;
   String title;
+  DateTime _lastPressedAt;
+
   bottomNavigationBar(ctx, path, NoRoute router){
     var _selectedIndex = -1;
     switch(path){
@@ -59,7 +61,7 @@ class BodyPage extends Page {
       return PageRouteBuilder(
         pageBuilder: (ctx, _, __){
           return Scaffold(
-              body: _build(ctx, params, router),
+              body: params['init'] ? wrapPopScope(_build(ctx, params, router)) : _build(ctx, params, router),
               bottomNavigationBar: bottomNavigationBar(ctx, params["path"] ?? "/", router),
 //              drawer: layout.drawer(ctx)
           );
@@ -72,12 +74,26 @@ class BodyPage extends Page {
          : null;
       return Scaffold(
         appBar: appBar,
-        body: _build(ctx, params, router),
+        body: params['init'] ? wrapPopScope(_build(ctx, params, router)) : _build(ctx, params, router),
         bottomNavigationBar: bottomNavigationBar(ctx, params["path"] ?? "/", router),
 //        drawer: layout.drawer(ctx)
       );
     },
     );
+  }
+
+  Widget wrapPopScope(Widget child){
+    return WillPopScope(
+        onWillPop: () async {
+      if (_lastPressedAt == null ||
+          DateTime.now().difference(_lastPressedAt) > Duration(seconds: 1)) {
+        //两次点击间隔超过1秒则重新计时
+        _lastPressedAt = DateTime.now();
+        return false; // 退出;
+      }
+      return true;
+    },
+    child: child,);
   }
 
   BodyPage.formBuild(BuildFn build, {this.noAnimate = true, this.title}) {

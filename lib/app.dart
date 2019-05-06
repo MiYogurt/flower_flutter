@@ -25,10 +25,12 @@ class DemoApp extends StatelessWidget {
         var args = settings.arguments;
         if(args == null){
           args = ({
-            "name": settings.name
+            "name": settings.name,
+            "init": settings.isInitialRoute
           }) as Object;
         } else {
           (args as Map)["path"] = settings.name;
+          (args as Map)["init"] = false;
         }
         widget = page.build(args, route);
       }

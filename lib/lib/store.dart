@@ -6,6 +6,10 @@ class AppState {
   AppState({
     this.shopCart = const []
   });
+
+  List<Goods> copydShopCart(){
+    return this.shopCart.map((v) => v.copy()).toList();
+  }
 }
 
 var initShopCart = [
@@ -17,23 +21,34 @@ var initShopCart = [
 var state = AppState();
 
 var addGoodsReducer = (AppState state, AddAction action){
-  state.shopCart.add(action.goods);
+  var shopCart = state.copydShopCart();
+  shopCart.add(action.goods);
   var newState = AppState(
-    shopCart: state.shopCart.sublist(0)
+    shopCart: shopCart,
   );
   return newState;
 };
 
 Reducer<AppState> otherGoodsReducer = (AppState state, action) {
+  var shopCart = state.copydShopCart();
   if(action is RemoveAction){
-    state.shopCart.removeAt(action.index);
-    return AppState(shopCart: state.shopCart);;
+    shopCart.removeAt(action.index);
+    return AppState(shopCart: shopCart);;
   } else if(action is AddCountAction) {
-    var goods = state.shopCart[action.index];
+    var goods = shopCart[action.index];
     goods.count += 1;
-    return AppState(shopCart: state.shopCart);;
+    return AppState(shopCart: shopCart);;
+  }else if(action is RemoveCountAction) {
+    var goods = shopCart[action.index];
+    goods.count -= 1;
+    if(goods.count <= 0) shopCart.removeAt(action.index);
+    return AppState(shopCart: shopCart);;
+  } else if(action is ToogleGoodsCheckeAction){
+    var goods = shopCart[action.index];
+    goods.checked = action.value;
+    return AppState(shopCart: shopCart);;
   } else if (action is InitState) {
-    return new AppState(shopCart: action.goods);
+    return new AppState(shopCart: action.goods.sublist(0));
   }
   return state;
 };
