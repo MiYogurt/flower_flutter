@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class Destory extends StatefulWidget {
   Widget child;
   VoidCallback despose;
@@ -15,9 +13,9 @@ class _DestoryState extends State<Destory> {
   Widget build(BuildContext context) {
     return widget.child;
   }
-  @override
-  void deactivate() {
-    super.deactivate();
+
+  void dispose() {
+    super.dispose();
     if(widget.despose != null)
       widget.despose();
   }
