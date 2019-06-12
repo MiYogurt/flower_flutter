@@ -88,11 +88,7 @@ class BodyPage extends Page {
         onWillPop: () async {
       if (_lastPressedAt == null ||
           DateTime.now().difference(_lastPressedAt) > Duration(seconds: 1)) {
-        //两次点击间隔超过1秒则重新计时
-        _lastPressedAt = DateTime.now();
-        return false; // 退出;
-      }
-      Fluttertoast.showToast(
+        Fluttertoast.showToast(
           msg: "再次返回退出应用",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
@@ -100,7 +96,12 @@ class BodyPage extends Page {
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-      return true;
+        //两次点击间隔超过1秒则重新计时
+        _lastPressedAt = DateTime.now();
+        return false; // 不退出
+      }
+      
+      return true; // 退出
     },
     child: child,);
   }
